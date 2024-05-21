@@ -25,8 +25,8 @@ describe("POST /orders/:id/ship", function () {
       .send();
     expect(resp.statusCode).toEqual(400);
   });
-  
-  test("throws error if 'zip' is missing from JSON body", async function() {
+
+  test("throws error if 'zip' is missing from JSON body", async function () {
     const resp = await request(app)
       .post("/orders/123/ship")
       .send({
@@ -36,5 +36,7 @@ describe("POST /orders/:id/ship", function () {
       });
     expect(resp.statusCode).toEqual(400);
     expect(resp.error.text).toEqual('{"error":{"message":["instance requires property \\"zip\\""],"status":400}}');
+    //resp.body.error.message easier place to find!!! contain not a good option
+    //TODO: test something that has invalid value, slip something exta in
   });
 });
