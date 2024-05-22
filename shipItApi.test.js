@@ -9,9 +9,8 @@ afterAll(function () { mockServer.close(); });
 test("shipProduct", async function () {
   const orderId = '123';
   const trackingId = 789;
-  const cost = 90;
 
-  mock('post', SHIPIT_SHIP_URL, '/orders/123/ship', { orderId, trackingId, cost });
+  mock('post', SHIPIT_SHIP_URL, '', { orderId, trackingId });
 
   const response = await shipViaShipIt({
     orderId: 123,
@@ -20,7 +19,6 @@ test("shipProduct", async function () {
     addr: "100 Test St",
     zip: "12345-6789",
   });
-
 
   expect(response).toEqual(789);
 });
